@@ -1,0 +1,17 @@
+# Site settings
+title: Angeldars Blog
+header-img: img/home-bg.jpg
+email: angeldaren@gmail.com
+description: "Site description here. It will be used as sites meta description as well!"
+baseurl: ""
+url: "http://yourdomain.com"
+# twitter_username: angeldaren
+github_username:  angeldar
+# facebook_username:  none
+
+# Build settings
+markdown: kramdown
+highlighter: pygments
+permalink: pretty
+paginate: 5
+exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
