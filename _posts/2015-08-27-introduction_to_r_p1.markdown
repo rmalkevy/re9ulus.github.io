@@ -1,6 +1,6 @@
 ---
 layout:     post
-title:      "Основы R, типы данных часть 1."
+title:      "Основы R, типы данных часть 1"
 date:       2015-08-25 12:00:00
 author:     "Vasiliy Zemlyanov"
 header-img: "img/test3.jpg"
