@@ -3,7 +3,7 @@ layout:     post
 title:      "Взлом простых шифров"
 date:       2015-04-05 12:00:00
 author:     "Vasiliy Zemlyanov"
-header-img: "img/post-bg-02.jpg"
+header-img: "img/post-bg-01.jpg"
 ---
 
 # Взлом простых шифров
