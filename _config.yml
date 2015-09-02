@@ -1,12 +1,12 @@
 # Site settings
-title: Angeldars Blog
+title: Re9uluses Blog
 header-img: img/home-bg.jpg
-email: angeldaren@gmail.com
+email: re9ulusV@gmail.com
 description: "IT, programming, data science"
 baseurl: ""
 url: "http://yourdomain.com"
-# twitter_username: angeldaren
-github_username:  angeldar
+twitter_username: re9ulusV
+github_username:  re9ulus
 # facebook_username:  none
 
 # Build settings
