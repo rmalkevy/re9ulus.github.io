@@ -1,0 +1,69 @@
+---
+layout:     post
+title:      "Деревья принятия решений в R"
+date:       2015-11-10 22:00:00
+author:     "Vasiliy Zemlyanov"
+header-img: "img/post-bg-03.jpg"
+---
+
+##TODO:
+```
+Использовать для статьи пост о титанике
+```
+
+Дерево принятия решений - средство поддержки принятия решений, использующееся в статистике и анализе данных для прогнозных моделей. Структура дерева представляет собой «листья» и «ветки».
+
+Достоинством деревьев является возможность интерпритировать результат.
+
+#Модель
+Данная модель строит дерево на основе разбияния независимых переменных.
+
+##Картинка с примером дерева
+
+##Как выбрать количество ветвлений
+Один из сопсобов определить количество разбиений - задать `minBucket` параметр, минимальное количестов элементов которое должно попасть в каждое ветвление.
+Если `minBucket` будет слишком большим:
+Если `minBucket` будет слишком низким:
+
+##ROC кривая
+
+{% highlight R %}
+# Backup source from R
+setwd("F:/Dev/analitics/trees/")
+stevens = read.csv("stevens.csv")
+
+str(stevens)
+set.seed(3000)
+
+library(caTools)
+split = sample.split(stevens$Revers, SplitRatio = 0.7)
+Train = subset(stevens, split == TRUE)
+Test = subset(stevens, split == FALSE)
+
+#  Installing package 
+install.packages("rpart")
+install.packages("rpart.plot")
+library(rpart)
+library(rpart.plot)
+
+#  Building model
+StevensTree = rpart(Reverse ~ Circuit + Issue + Petitioner + Respondent +
+                      LowerCourt + Unconst, data = Train, method = "class",
+                    control=rpart.control(minbucket = 25))
+
+#  Plot tree
+prp(StevensTree)
+
+# Predicitons
+PredictCART = predict(StevensTree, newdata = Test, type="class")
+
+# Compute accurasy
+table(Test$Reverse, PredictCART)
+
+# Plot ROC curve
+library(ROCR)
+PredictROC = predict(StevensTree, newdata = Test)
+pref = prediction(PredictROC[,2], Test$Reverse)
+perf = performance(pred, "tpr", "fpr")
+plot(perf)
+{% endhighlight %}
