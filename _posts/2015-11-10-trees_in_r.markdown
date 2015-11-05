@@ -64,6 +64,45 @@ table(Test$Reverse, PredictCART)
 library(ROCR)
 PredictROC = predict(StevensTree, newdata = Test)
 pref = prediction(PredictROC[,2], Test$Reverse)
-perf = performance(pred, "tpr", "fpr")
+perf = performance(pref, "tpr", "fpr")
 plot(perf)
+{% endhighlight %}
+
+#Random forest
+Этот метод был разработан для улучшения предсказывающих качеств деревьев принятия решений и работает на основе построение большого количества деревьев.
+Ценой за улучшение предсказывающих способностей является уменьшение интерпритируемости результатов.
+
+Для того, чтобы сделать предсказание с помощью `Random forest` каждое дерево *голосует* за результат и мы выбираем результат модели по большинству голосов.
+
+Каждое дерево строится из `badged or bootstrapped` подмножества данных с повторениями.
+
+Параметры Random Forest:
+
+- Минимальное количество наблюдений в подмножестве (`nodesize`)
+- Количество деревьев (`ntree`)
+
+## Random forest в R
+
+{% highlight R %}
+### Random forest example
+
+# install package
+install.packages("randomForest")
+library(randomForest)
+
+# Building model
+# Outcome variable should be a factor
+Train$Reverse = as.factor(Train$Reverse)
+Test$Reverse = as.factor(Test$Reverse)
+
+# nodesize - number of items in bucket; ntree - number of trees to build
+StevensForest = randomForest(Reverse ~ Circuit + Issue + Petitioner + Respondent + LowerCourt + Unconst,
+                             data=Train, nodesize=25, ntree=200)
+
+# Predicitons
+PredictForest = predict(StevensForest, newdata = Test)
+
+# Confusion matrix
+table(Test$Reverse, PredictForest)
+(40 + 75) / (40 + 37 + 18 + 75)
 {% endhighlight %}
