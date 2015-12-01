@@ -106,3 +106,39 @@ PredictForest = predict(StevensForest, newdata = Test)
 table(Test$Reverse, PredictForest)
 (40 + 75) / (40 + 37 + 18 + 75)
 {% endhighlight %}
+
+##Кросс валидация (K-folds Cross-Validation)
+
+(имеет смысл использовать для `random tree`, но не для `random forest`, причиной является то, что `random forest` не так критичен параметрам и сложнее поддается переобучению)
+Если `minbucket` слишком мал возможен `overfitting`,
+если `minbucket` слишком большой модель может оказатсья слишком простой и не соответствовать реальным данным.
+
+Разобьем тренировочные данные на 5 частей (`folds`).
+Используя `k-1` folds для тренировки модели и протестируем на оставшемся fold-e
+Повторим для всех значений `k`.
+
+Для каждого значения k и для каждого fold вычислим точность модели.
+По оси x выставим значение параметра, а по оси y точность модели. И построим кривые для каждого fold-a.
+
+## Кросс валидация в R
+
+{% highlight R %}
+# TODO: Протестировать этот код в R
+# Устанавливаем необходимый пакет
+install.packages("caret")
+install.packages("e1071")
+library(caret)
+library(e1071)
+
+# method="cv" - использовть кросс-валидацию
+# number=10 - использовать 10 фолдов
+fitControl = trainControl(method="cv", number=10)
+cartGrid = expand.grid(.cp=(1:50)*0.01)
+
+# CrossValidation
+train(Reverse ~ Circuit + Issue + Petitioner + ..., data=Train, method="rpart",
+    trControl=fitControl, tuneGrid=cartGrid)
+
+# Полученный cp необходимо использовать в функции rpart в качестве параметра
+# control=rpart.control(cp=)  
+{% endhighlight %}
