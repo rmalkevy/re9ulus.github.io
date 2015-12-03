@@ -11,64 +11,80 @@ header-img: "img/post-bg-03.jpg"
 Использовать для статьи пост о титанике
 ```
 
-Дерево принятия решений - средство поддержки принятия решений, использующееся в статистике и анализе данных для прогнозных моделей. Структура дерева представляет собой «листья» и «ветки».
+Дерево принятия решений - средство поддержки принятия решений, использующееся в статистике и анализе данных для прогнозных моделей.
 
 Достоинством деревьев является возможность интерпритировать результат.
+Недостатком является `НЕДОСТАТКИ ДЕРЕВЬЕВ`
+
+#Пример дерева
+
+Рассмотрим пример простого дерева для данных об пассажирах Титаника.
+
+<p class="center">
+    <img src="/assets/trees/tree_example.png" alt="Tree example" class='center-block'>
+</p>
+
+В корне дерева проверяется пол пассажира. Все мужчины при этом определяются как погибшие.
+Для выживших пассажиров выпроняется следующая проверка, если пассажир путещевстсовал классом выше 3 - модель определяет его как выжившего.
+Среди пассажиров третьего класса выжили пассажири моложе 25 лет. Это досточно простое дерево решений предсказывает выживание пассажира в 75.7% случаев и позволяет сделать выводы о том, какие факторы повлияли на выживание пассажиров Титаника.
 
 #Модель
+
 Данная модель строит дерево на основе разбияния независимых переменных.
 
-##Картинка с примером дерева
-
-##Как выбрать количество ветвлений
-Один из сопсобов определить количество разбиений - задать `minBucket` параметр, минимальное количестов элементов которое должно попасть в каждое ветвление.
+Один из сопсобов определить количество разбиений задать `minBucket` параметр, минимальное количестов элементов которое должно попасть в каждое ветвление.
 Если `minBucket` будет слишком большим:
 Если `minBucket` будет слишком низким:
 
-##ROC кривая
 
 {% highlight R %}
-# Backup source from R
 setwd("F:/Dev/analitics/trees/")
-stevens = read.csv("stevens.csv")
+titanic = read.csv("titanic.csv")
 
-str(stevens)
+str(titanic)
 set.seed(3000)
 
 library(caTools)
-split = sample.split(stevens$Revers, SplitRatio = 0.7)
-Train = subset(stevens, split == TRUE)
-Test = subset(stevens, split == FALSE)
+split = sample.split(titanic$Survived, SplitRatio = 0.7)
+Train = subset(titanic, split == TRUE)
+Test = subset(titanic, split == FALSE)
 
-#  Installing package 
+#  Установка и загрузка пакетов
 install.packages("rpart")
 install.packages("rpart.plot")
 library(rpart)
 library(rpart.plot)
 
-#  Building model
-StevensTree = rpart(Reverse ~ Circuit + Issue + Petitioner + Respondent +
-                      LowerCourt + Unconst, data = Train, method = "class",
+# Строим модель
+TitanicTree = rpart(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare,
+                    data = Train, method = "class",
                     control=rpart.control(minbucket = 25))
 
-#  Plot tree
-prp(StevensTree)
+# Изображение дерева
+prp(TitanicTree)
 
-# Predicitons
-PredictCART = predict(StevensTree, newdata = Test, type="class")
+# Предсказания
+PredictCART = predict(TitanicTree, newdata = Test, type="class")
 
-# Compute accurasy
-table(Test$Reverse, PredictCART)
+# Определяем точность
+table(Test$Survived, PredictCART)
+{% endhighlight %}
 
+##Как выбрать количество ветвлений
+
+##ROC кривая
+
+{% highlight R %}
 # Plot ROC curve
 library(ROCR)
-PredictROC = predict(StevensTree, newdata = Test)
-pref = prediction(PredictROC[,2], Test$Reverse)
+PredictROC = predict(TitanicTree, newdata = Test)
+pref = prediction(PredictROC[,2], Test$Survived)
 perf = performance(pref, "tpr", "fpr")
 plot(perf)
 {% endhighlight %}
 
 #Random forest
+
 Этот метод был разработан для улучшения предсказывающих качеств деревьев принятия решений и работает на основе построение большого количества деревьев.
 Ценой за улучшение предсказывающих способностей является уменьшение интерпритируемости результатов.
 
@@ -92,18 +108,20 @@ library(randomForest)
 
 # Building model
 # Outcome variable should be a factor
-Train$Reverse = as.factor(Train$Reverse)
-Test$Reverse = as.factor(Test$Reverse)
+Train$Survived = as.factor(Train$Survived)
+Test$Survived = as.factor(Test$Survived)
+
+Train$Age[is.na(Train$Age)] <- median(Train$Age, na.rm=TRUE)
 
 # nodesize - number of items in bucket; ntree - number of trees to build
-StevensForest = randomForest(Reverse ~ Circuit + Issue + Petitioner + Respondent + LowerCourt + Unconst,
+TrainForest = randomForest(Survived ~ Pclass + Sex + Age,
                              data=Train, nodesize=25, ntree=200)
 
 # Predicitons
-PredictForest = predict(StevensForest, newdata = Test)
+PredictForest = predict(TrainForest, newdata = Test)
 
 # Confusion matrix
-table(Test$Reverse, PredictForest)
+table(Test$Survived, PredictForest)
 (40 + 75) / (40 + 37 + 18 + 75)
 {% endhighlight %}
 
@@ -121,6 +139,8 @@ table(Test$Reverse, PredictForest)
 По оси x выставим значение параметра, а по оси y точность модели. И построим кривые для каждого fold-a.
 
 ## Кросс валидация в R
+
+В R за `minbucket` отвечает параметр `cp`
 
 {% highlight R %}
 # TODO: Протестировать этот код в R
