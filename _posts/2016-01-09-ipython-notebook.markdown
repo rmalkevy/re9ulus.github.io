@@ -1,20 +1,20 @@
 ---
 layout:     post
 title:      "IPython Notebook"
-date:       2016-01-09 00:00:00
+date:       2016-01-09 16:00:00
 author:     "Vasiliy Zemlyanov"
 header-img: "img/post-bg-06.jpg"
 ---
 
-IPython Notebook - это интерактивная среда для программирования на python, которая позволяет объеденить код, текст (включая [Markdown](https://daringfireball.net/projects/markdown/ "Markdown")), графики, математические формулы ([MathJax](https://www.mathjax.org/ "Mathjax")) и скомбинировать все в одном отчете. Отчет можно конвертировать в html, LaTex, pdf и другие форматы.
+IPython Notebook - это интерактивная среда для программирования на языке python, которая позволяет объединить код, текст (включая [Markdown](https://daringfireball.net/projects/markdown/ "Markdown")), графики, математические формулы ([MathJax](https://www.mathjax.org/ "Mathjax")) и скомбинировать все в одном отчете. Отчет можно конвертировать в html, LaTeX, pdf и другие форматы.
 
-Удобный инструмент для ведения исследований, заметок, конспектов и так далее.
-Сущесвуют [статьи и учебные материалы](http://nb.bianp.net/sort/views/ "Links to the best IPython and Jupyter Notebooks.") распространяемые в качестве ноутбуков.
+Удобный инструмент для ведения исследований, заметок, конспектов и тому подобного.
+Существуют [статьи и учебные материалы](http://nb.bianp.net/sort/views/ "Links to the best IPython and Jupyter Notebooks.") распространяемые в качестве ноутбуков.
 
 #Установка
 
 ## 1 способ
-Самым простым способом установки является использование python дистрибутива [Anaconda](https://www.continuum.io/downloads "Anaconda"), содержащего более 300 научных python, пакетов включая Ipython.
+Самым простым способом установки является использование python дистрибутива [Anaconda](https://www.continuum.io/downloads "Anaconda"), содержащего более 300 научных python пакетов, включая Ipython.
 
 ## 2 способ
 Для установки на *nix системах
@@ -37,7 +37,7 @@ pip install ipython[all]
 ipython notebook
 {% endhighlight %}
 
-На 8888 порту будет запущен локальный сервер и в браузере откроется страница с блокнотом.
+На 8888 порту будет запущен локальный сервер и в браузере откроется страница с ноутбуком.
 
 <p class="center">
     <img src="/assets/ipython_notebook/notebook_1_start.png" alt="Notebook start" class='center-block'>
@@ -59,7 +59,7 @@ ipython notebook
 
 Документ сохраняется автоматически и правильно понимает сочетание *Ctrl-S*.
 
-Код в Ipython документах организован в ячейки (`cells`). По нажати *Ctrl-Enter* код в ячейке выполняется и результат вычислений отображается под ней.
+Код в Ipython документах организован в ячейки (`cells`). По нажатии *Ctrl-Enter* код в ячейке выполняется и результат вычислений отображается под ней.
 
 <p class="center">
     <img src="/assets/ipython_notebook/notebook_4_cell_example.png" alt="Cell example" class='center-block'>
@@ -67,14 +67,14 @@ ipython notebook
 
 Ячейка может относиться к одному из нескольких типов. Выбрать тип ячейки можно используя пункт меню *Cell->Cell Type*.
 
-##Code cells
+##Code cell
 Позволяет писать и редактировать код с подсветкой синтаксиса и автоподстановкой (*Tab*). После добавления директивы 
 
 {% highlight python %}
 %matplotlib inline
 {% endhighlight %}
 
-в начале ячейки появляется возможность строить графики прямо в документе.
+в начале ячейки, появляется возможность строить графики прямо в документе.
 
 {% highlight python %}
 %matplotlib inline
@@ -99,7 +99,7 @@ plt.show()
     <img src="/assets/ipython_notebook/notebook_5_code_cell.png" alt="Code cell" class='center-block'>
 </p>
 
-##Markdown cells
+##Markdown cell
 Ячейки для документирования, позволяют использовать [Markdown](https://daringfireball.net/projects/markdown/ "Markdown") синтаксис и математические формулы [MathJax](https://www.mathjax.org/ "Mathjax").
 
 {% highlight python %}
@@ -130,8 +130,8 @@ $$ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
     <img src="/assets/ipython_notebook/notebook_6_markdown_cell.png" alt="Markdown cell" class='center-block'>
 </p>
 
-##Raw cells
-Эти ячейки служат для хранения дополнительной информации, никак не исполняются и не модифицируются.
+##Raw cell
+Эти ячейки служат для хранения дополнительной информации, никак не исполняются и не модифицируются. Например в них можно хранить LaTeX для статьи.
 
 #Конвертация notebook-a в другие форматы
 
@@ -157,11 +157,11 @@ ipython nbconvert --to FORMAT notebook.ipynb
 - `Ctrl-Enter` - выполнить код в ячейке
 - `Shift-Enter` - выполнить код в ячейке и перейти к следующей
 - `Alt-Enter` - выполнить код в ячейке и вставить ячейку снизу
-- `Ctrl-M` - прервать вычисления
+- `Ctrl-M` - прервать исполнение
 - `A` - вставить ячейку выше
 - `B` - вставить ячейку ниже
 - `K` - выбрать предыдущую ячейку
-- `J` - выбрать следующуя ячейку
+- `J` - выбрать следующую ячейку
 - `D,D` - удалить ячейку
 - `Y` - в code cell
 - `M` - в markdown cell
