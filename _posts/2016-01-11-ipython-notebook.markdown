@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "IPython Notebook"
-date:       2016-01-09 00:00:00
+date:       2016-01-09 16:00:00
 author:     "Vasiliy Zemlyanov"
 header-img: "img/post-bg-06.jpg"
 ---
