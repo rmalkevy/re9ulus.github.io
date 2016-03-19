@@ -1,7 +1,7 @@
 ---
 layout:     post
 title:      "Установка XGBoost на Windows"
-date:       2016-03-20 02:00:00
+date:       2016-03-20 00:00:00 +02:00
 author:     "Vasiliy Zemlyanov"
 header-img: "img/post-bg-07.jpg"
 ---
