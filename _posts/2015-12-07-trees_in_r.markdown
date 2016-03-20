@@ -149,7 +149,8 @@ train(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare, data=Train, method="
   0.200  0.8006349  0.5712707  0.08858082   0.1907386
 
 Accuracy was used to select the optimal model using  the largest value.
-The final value used for the model was cp = 0.006. # Нужное значение
+The final value used for the model was cp = 0.006 # Нужное значение
+ 
 
 # Полученный cp необходимо использовать в функции rpart в качестве параметра
 
@@ -206,7 +207,8 @@ PredictForest <- predict(TrainForest, newdata = Test)
 # Точность модели
 
 table(Test$Survived, PredictForest)
-(151 + 65) / (151 + 65 + 38 + 14) #0.8059701
+(151 + 65) / (151 + 65 + 38 + 14) # 0.8059701
+ 
 {% endhighlight %}
 
 Полученный лес имеет точность $$\approx80.6\%$$ на тестовом наборе данных и превосходит дерево принятия решений.
