@@ -199,7 +199,9 @@ table(data$Survived, predictTrain > 0.5)
 #  1    93  249
 
 sensitivity <- 249 / (93 + 249) #  0.7280702
+
 specificity <- 454 / (454 + 95) #  0.8269581
+
 {% endhighlight %}
 
 Подобрать необходимое пороговое значение можно с помощью `ROC`-кривой.
@@ -215,10 +217,12 @@ specificity <- 454 / (454 + 95) #  0.8269581
 {% highlight R %}
 
 # Устанавливаем необходимый пакет
+
 install.package("ROCR")
 package(ROCR)
 
 # Строим ROC-кривую
+
 ROCRpred = prediction(predictTrain, data$Survived)
 ROCRperf = performance(ROCRpred, "tpr", "fpr")
 plot(ROCRperf, colorize=TRUE, print.cutoffs.at=seq(0,1,0.1), text.adj=c(-0.2,1.7))

@@ -6,7 +6,7 @@ author:     "Vasiliy Zemlyanov"
 header-img: "img/post-bg-02.jpg"
 ---
 
-#Язык программирования R
+# Язык программирования R
 
 **R** - язык программирования и программная среда предназначенная для статистических вычислений. Получил широкое распространение в среде разработки статистического программного обеспечения, анализе данных и как средство для построения графиков.
 
@@ -18,7 +18,7 @@ header-img: "img/post-bg-02.jpg"
 
 Недостатками `R` являются нетривиальный синтаксис, который требует привыкания и относительно медленная скорость работы.
 
-#Основы
+# Основы
 
 `R` доступен для всех современных операционных систем, и поставляется с полноценной REPL средой.
 Интерактивную консоль можно использовать для простых экспериментов, в качестве калькулятора и для чтения документации.
@@ -29,11 +29,14 @@ header-img: "img/post-bg-02.jpg"
 
 {% highlight R %}
 #  Комментарии начинаются со знака слеша
+
 #  Создадим нескольких переменных
+
 > width <- 5
 > height <- 4
 
 # Используем для дальнейших вычислений
+
 > square <- width * height
 > perimeter <- 2 * (height + width)
 > square
@@ -42,10 +45,12 @@ header-img: "img/post-bg-02.jpg"
 [1] 18
 
 # Функция "ls" - отображает переменные в текущем окружении
+
 > ls()
 [1] "height" "width" "square" "perimeter"
 
 # Функция "rm" - удаляет переменную из окружения
+
 > rm(perimeter)
 > ls()
 [1] "height" "width" "square"
@@ -55,6 +60,7 @@ header-img: "img/post-bg-02.jpg"
 
 {% highlight R %}
 # Функция "cat" используется для вывода в консоль или файл
+
 cat("Compute the square of pizza:\n")
 pizza_radius <- 3 
 pizza_square <- pi * pizza_radius ^ 2
@@ -88,7 +94,7 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 Или поискать название функции в интернете.
 
-##Logical
+## Logical
 
 Самым простым является логический тип данных `logical`. К нему относятся значения `TRUE` и `FALSE`, можно просто `T` и `F`. Еще `logical` соответствует значение `NA`, но сейчас это неважно.
 
@@ -116,12 +122,13 @@ This is a generic function: methods can be defined for it directly or via the Su
 [1] FALSE
 {% endhighlight %}
 
-##Numeric
+## Numeric
 
 Числовой тип данных представлен `numeric` и поддерживает основные арифметические операции.
 
 {% highlight R %}
 # Ничего интересного
+
 > 1984
 [1] 1984
 
@@ -132,14 +139,17 @@ This is a generic function: methods can be defined for it directly or via the Su
 [1] 11.4
 
 # Возведение в степень
+
 > 7 ^ 4
 [1] 2401
 
 # Остаток деления, mod
+
 > 9 %% 2
 [1] 1
 
 # Целочисленное деление, div
+
 > 9 %/% 2
 [1] 4
 {% endhighlight %}
@@ -148,17 +158,19 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 {% highlight R %}
 # Это numeric
+
 > class(13)
 [1] "numeric"
 
 # А это integer
+
 > class(13L)
 [1] "integer"
 {% endhighlight %}
 
 Все `integer` являются `numeric`, но не все `numeric` являются `integer`.
 
-##Character
+## Character
 
 Для хранения строк есть `character`, тут все просто.
 
@@ -167,6 +179,7 @@ This is a generic function: methods can be defined for it directly or via the Su
 [1] "Hello World!"
 
 # Конкатенация строк производится функцией "paste", "+" не работает для строк!
+
 > name <- "John"
 > surname <- "Galt"
 > character <- paste(name, surname)
@@ -174,14 +187,17 @@ character
 [1] "John Galt"
 
 # Печатаем строку
+
 > sprintf("Who is %s?", character)
 [1] "Who is John Gult?"
 
 # Получаем подстроку
+
 > substr("Answer to the Ultimate Question of Life, the Universe, and Everything", start = 23, stop = 39)
 [1] " Question of Life"
 
 # Заменяем подстроку
+
 > sub("problem", "dream!", "I have a problem")
 [1] "I have a dream!"
 {% endhighlight %}
@@ -192,36 +208,44 @@ character
 
 {% highlight R %}
 # Создание комплексного числа
+
 > z <- 2 + 1i
 > z
 [1] 2+1i
 
 # Действительная часть
+
 > Re(z)
 [1] 2
 
 # Мнимая часть
+
 > Im(z)
 [1] 1
 
 # Модуль
+
 > Mod(z)
 [1] 2.236068
 
 # Аргумент
+
 > Arg(z)
 [1] 0.4636476
 
 # Сопряженное комплексное число
+
 > Conj(z)
 [1] 2-1i
 {% endhighlight %}
 
-##Определяем и конвертируем типы
+## Определяем и конвертируем типы
+
 Чтобы проверить, принадлежит ли переменная к какому-либо типу можно использовать функции вида `is.*`:
 
 {% highlight R %}
 # Возвращаясь к numeric и integer
+
 > is.numeric(5)
 [1] TRUE
 
@@ -235,6 +259,7 @@ character
 [1] TRUE
 
 # Другие типы
+
 > is.character("Mew!")
 [1] TRUE
 
@@ -246,6 +271,7 @@ character
 
 {% highlight R %}
 # logical в numeric
+
 > as.numeric(TRUE)
 [1] 1
 
@@ -253,31 +279,36 @@ character
 [1] 0
 
 # numeric в character
+
 > as.character(8)
 [1] "8"
 
 # character в numeric
+
 > as.numeric("4.2")
 [1] 4.2
 
 # character в integer
+
 > as.integer("4.2")
 [1] 4
 
 # а так делать нельзя
+
 > as.numeric("This is not a number!")
 [1] NA
 Warning message:
 NAs introduced by coercion 
 {% endhighlight %}
 
-#Векторы
+# Векторы
 
 Вектор в `R` это набор элементов одного типа.
 Создаются векторы функцией `c()`, сокращение от *combine*.
 
 {% highlight R %}
 # Вектор чисел
+
 > remain <- c(10, 11, 13, 8)
 > remain
 [1] 10 11 13 8
@@ -286,15 +317,18 @@ NAs introduced by coercion
 [1] TRUE
 
 # Вектор строк
+
 > suits <- c("spades", "hearts", "diamonds", "clubs")
 > suits
 [1] "spades" "hearts" "diamonds" "clubs"   
 
 # Длина вектора получается функцией `length()`
+
 > length(remain)
 [1] 4
 
 # Сумма элементов функцией `sum()`
+
 > sum(remain)
 [1] 42
 {% endhighlight %}
@@ -303,14 +337,18 @@ NAs introduced by coercion
 
 {% highlight R %}
 # С помощью функции names()
+
 > names(remain) <- suits
 > remain
 spades hearts diamonds clubs
     10     11       13     8
 
 # Во время создания объекта
+
 remain <- c("spades" = 10, "hearts" = 11, "diamonds" = 13, "clubs" = 8) 
+
 # Имена можно не заключать в кавычки
+
 remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 {% endhighlight %}
 
@@ -337,6 +375,7 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 
 {% highlight R %}
 # Все numeric будут конвертированы в character
+
 > marks <- c(4, 5, "A", "F")
 > marks
 [1] "4" "5" "A" "F"
@@ -358,6 +397,7 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 [1] 3.162278 4.472136 5.477226
 
 # Операции над несколькими векторами так же выполняются поэлементно
+
 > expenses <- (5, 10, 40)
 > earnings - expenses
 [1] 5 10 -10
@@ -369,6 +409,7 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 [1] 10, 10, 10
 
 # Каждый элемент вектора можно проверить на соответсиве условию и получить вектор logic значений
+
 > earnings > 15
 [1] FALSE TRUE TRUE
 {% endhighlight %}
@@ -379,12 +420,15 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 
 {% highlight R %}
 > remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
+> 
 # По индексу
+
 > remain[1]
 spades
     10
 
 # По имени
+
 > remain["hearts"]
 hearts
     11
@@ -393,12 +437,15 @@ hearts
 Можно получить несколько элементов вектора, используя числовой вектор или вектор строк.
 
 {% highlight R %}
+
 # По индесам
+
 > remain[c(1, 4)]
 spades clubs
     10     8
 
 # По именам
+
 > remain[c("diamonds", "hearts")]
 diamonds hearts
       13     11     
@@ -407,13 +454,16 @@ diamonds hearts
 Если поставить перед индексом элемента знак минус `-`, этот элемент будет исключен из вектора. Удалять элементы по именам нельзя, только по индексам.
 
 {% highlight R %}
+
 # Новый вектор, содержащий все элементы remain кроме третьего
+
 > new_remain < remain[-3]
 > new_remain
 spades hearts clubs
     10     11     8
 
 # Можно исключить сразу несколько элементов
+
 > remain[-c(1, 3)]
 hearts clubs
     11     8
@@ -422,17 +472,21 @@ hearts clubs
 Подмножество элементов можно получить передав вектор `logic` значений. Будут выбраны элементы индексам которых соответствует значение `TRUE`.
 
 {% highlight R %}
+
 # Выбираем второй и четвертый элементы
+
 > remain[c(FALSE, TRUE, FALSE, TRUE)]
 hearts clubs
     11     8
 
 # Если элементов в передаваемом векторе недостаточно, вектор будет зациклен до нужной длины
+
 > remain[c(FALSE, TRUE)]
 hearts clubs
     11     8
 
 # Выбираем нечетные элементы
+
 >remain[remain %% 2 != 0]
 hearts diamonds
     11       13 
@@ -444,13 +498,16 @@ hearts diamonds
 Создается матрица функцией `matrix()`, с указанием количества строк или столбцов.
 
 {% highlight R %}
+
 # Матрица содержащая элементы от 1 до 6 в две строки
+
 > matrix(1:6, nrow = 2)
      [,1] [,2] [,3]
 [1,]    1    3    5
 [2,]    2    4    6
 
 # В два столбца
+
 > matrix(1:6, ncol = 2)
      [,1] [,2]
 [1,]    1    4
@@ -458,12 +515,14 @@ hearts diamonds
 [3,]    3    6
 
 # По умолчанию матрица заполняется по столбцам, для заполнения по строкам нужен параметр "byrow"
+
 > matrix(4:11, nrow = 2, byrow = TRUE)
      [,1] [,2] [,3] [,4]
 [1,]    4    5    6    7
 [2,]    8    9   10   11
 
 # Если элементов недостаточно для заполнения всех строк и столбцов они будут циклически повторяться
+
 > matrix(1:3, nrow = 3, ncol = 4, byrow = TRUE)
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3    1
@@ -511,9 +570,13 @@ hearts diamonds
 
 {% highlight R %}
 > m <- matrix(1:9, nrow = 3, ncol = 3, byrow = TRUE)
+> 
 # Называем стоки
+
 > rownames(m) <- c("row1", "row2", "row3")
+> 
 # Называем столбцы
+
 > colnames(m) <- c("col1", "col2", "col3")
 > m
      col1 col2 col3
@@ -522,6 +585,7 @@ row2    4    5    6
 row3    7    8    9
 
 # При создания матрицы
+
 > m <- matrix(1:9, byrow = TRUE, nrow = 3, ncol = 3,
                 dimnames = list(c("row1", "row2", "row3"),
                                 c("col1", "col2", "col3")))
@@ -529,12 +593,13 @@ row3    7    8    9
 
 Как и векторы, матрицы хранят элементы только одного типа. При попытке сохранить в одной матрице элементы нескольких типов, или соединить матрицы разных типов используя `rbind` и `cbind` все элементы будут приведены к наиболее общему типу.
 
-##Элементы матрицы, подмножества матриц
+## Элементы матрицы, подмножества матриц
 
 Для выбора элементов матрицы используются те же техники что и для векторов, с поправкой на двумерность матрицы.
 
 {% highlight R %}
 # Выбираем элемент из первой строки, третьего столбца
+
 > m[1, 3]
 [1] 3
 {% endhighlight %}
@@ -543,11 +608,13 @@ row3    7    8    9
 
 {% highlight R %}
 # Выбираем вторую строку
+
 > m[2, ]
 col1 col2 col3 
    4    5    6 
 
 # Выбираем третий столбец
+
 > m[, 3]
 row1 row2 row3 
    3    6    9 
@@ -557,11 +624,13 @@ row1 row2 row3
 
 {% highlight R %}
 # Элементы на пересечении второй строки, первого и третьего столбца
+
 > m[2, c(1, 3)]
 col1 col3 
    4    6 
 
 # Подматрица, состоящая из элементов на пересечении 1, 3 строк и 1, 3 столбцов
+
 > m[c(1, 3), c (1, 3)]
      col1 col3
 row1    1    3
@@ -576,6 +645,7 @@ row1 row3
    1    7 
 
 # Индексы и имена можно использовать вместе
+
 > m[2, c("col2", "col3")]
 col2 col3 
    5    6 
@@ -587,6 +657,7 @@ col2 col3
 
 {% highlight R %}
 # Переменная будет добавлена к каждому элементу
+
 > m + 3
      col1 col2 col3
 row1    4    5    6
@@ -594,6 +665,7 @@ row2    7    8    9
 row3   10   11   12
 
 # Функция применяется к каждом элементу
+
 > log(m)
          col1      col2     col3
 row1 0.000000 0.6931472 1.098612
@@ -601,16 +673,19 @@ row2 1.386294 1.6094379 1.791759
 row3 1.945910 2.0794415 2.197225
 
 # "rowSums" возвращает сумму элементов каждой строки
+
 > rowSums(m)
 row1 row2 row3 
    6   15   24 
 
 # "colSums" возвращает сумму элементов каждого столбца
+
 > colSums(m)
 col1 col2 col3 
   12   15   18 
 
 # Транспонирование матриц осуществляется функцией "t()"
+
 > t(m)
      row1 row2 row3
 col1    1    4    7
@@ -618,6 +693,7 @@ col2    2    5    8
 col3    3    6    9
 
 # Для математической операции перемножения матриц необходимо использовать оператор %*%
+
 > matrix(1:6, nrow = 3) %*% matrix(7:12, ncol = 3)
      [,1] [,2] [,3]
 [1,]   39   49   59
