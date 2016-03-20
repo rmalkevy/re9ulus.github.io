@@ -109,7 +109,7 @@ TODO List:
 
  1. Create note about IPython notebook.
  2. Add part about Markdown.
- 3. Don't forget about MathJax.
+ 3. Do not forget about MathJax.
  4. Add table in the end.
  
 <h4>An Identity of Ramanujan</h4>
@@ -133,7 +133,7 @@ $$ \frac{1}{\Bigl(\sqrt{\phi \sqrt{5}}-\phi\Bigr) e^{\frac25 \pi}} =
 ## Raw cell
 Эти ячейки служат для хранения дополнительной информации, никак не исполняются и не модифицируются. Например в них можно хранить LaTeX для статьи.
 
-#Конвертация notebook-a в другие форматы
+# Конвертация notebook-a в другие форматы
 
 [Конвертировать ноутбук](https://ipython.org/ipython-doc/1/interactive/nbconvert.html "Conver notebook") можно командой
 
