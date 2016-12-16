@@ -13,7 +13,7 @@ github_username:  re9ulus
 markdown: kramdown
 highlighter: rouge #pygments
 permalink: pretty
-paginate: 5
+paginate: 8
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
 input: GFM
 gems: [jekyll-paginate]
