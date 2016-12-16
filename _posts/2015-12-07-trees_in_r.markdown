@@ -37,7 +37,7 @@ header-img: "img/post-bg-05.jpg"
 
 `cp` (complexity parameter) - это метрика, которая останавливает ветвление дерева, когда оно уже не улучшает показатели модели.
 
-{% highlight R %}
+```R
 # Подготовка данных
 
 setwd("path/to/working/directory")
@@ -93,7 +93,7 @@ PredictROC <- predict(TitanicTree, newdata = Test)
 pref <- prediction(PredictROC[,2], Test$Survived)
 perf <- performance(pref, "tpr", "fpr")
 plot(perf)
-{% endhighlight %}
+```
 
 Полученная модель:
 <p class="center">
@@ -108,11 +108,11 @@ plot(perf)
 
 Разобьем тренировочные данные на $$k$$ частей (`folds`).
 Для $$i \in \overline{\rm 1..k}$$: <br />
-Используем $$k-1$$ часть (все кроме $$i$$-й) для тренировки модели со всеми возможными значениями подбираемого параметра и протестируем получившиеся модели на оставшейся $$i$$-й части. 
+Используем $$k-1$$ часть (все кроме $$i$$-й) для тренировки модели со всеми возможными значениями подбираемого параметра и протестируем получившиеся модели на оставшейся $$i$$-й части.
 
 Имея тестовые данные определим значение параметра, дающее наилучшие результаты в среднем случае.
 
-{% highlight R %}
+```R
 # Устанавливаем необходимые пакеты
 
 install.packages("caret")
@@ -150,7 +150,7 @@ train(Survived ~ Pclass + Sex + Age + SibSp + Parch + Fare, data=Train, method="
 
 Accuracy was used to select the optimal model using  the largest value.
 The final value used for the model was cp = 0.006 # Нужное значение
- 
+
 
 # Полученный cp необходимо использовать в функции rpart в качестве параметра
 
@@ -166,7 +166,7 @@ fancyRpartPlot(TitanicTree)
 PredictCART <- predict(TitanicTree, newdata = Test, type="class")
 table(Test$Survived, PredictCART)
 (152 + 61) / (152 + 61 + 42 + 13) # 0.7947761
-{% endhighlight %}
+```
 
 Дерево полученное в результате использования параметра `cp` после кросс-валидации:
 
@@ -187,7 +187,7 @@ table(Test$Survived, PredictCART)
 - Минимальное количество наблюдений в подмножестве (`nodesize`)
 - Количество деревьев (`ntree`)
 
-{% highlight R %}
+```R
 # Устанавливаем необходимый пакет
 
 install.packages("randomForest")
@@ -208,8 +208,7 @@ PredictForest <- predict(TrainForest, newdata = Test)
 
 table(Test$Survived, PredictForest)
 (151 + 65) / (151 + 65 + 38 + 14) # 0.8059701
- 
-{% endhighlight %}
+```
 
 Полученный лес имеет точность $$\approx80.6\%$$ на тестовом наборе данных и превосходит дерево принятия решений.
 
