@@ -15,5 +15,9 @@ highlighter: rouge #pygments
 permalink: pretty
 paginate: 8
 exclude: ["less","node_modules","Gruntfile.js","package.json","README.md"]
-input: GFM
+
 gems: [jekyll-paginate]
+
+kramdown:
+    input: GFM
+    syntax_highlighter: rouge
