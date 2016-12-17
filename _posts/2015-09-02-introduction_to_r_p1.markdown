@@ -25,9 +25,9 @@ header-img: "img/post-bg-02.jpg"
 
 Первое что бросается в глаза: `R` в отличии от большинства языков программирования в качестве оператора присваивания использует `<-` вместо `=`. На самом деле и `=` работает, разница в использовании операторов в области видимости переменной.
 
-В разных style guide-ах можно найти противоположные рекомендации по использованию операторов присваивания, но в сообществе `R` разработчиков более распространен первый вариант `<-`, его я и буду использовать в данном цикле статей. 
+В разных style guide-ах можно найти противоположные рекомендации по использованию операторов присваивания, но в сообществе `R` разработчиков более распространен первый вариант `<-`, его я и буду использовать в данном цикле статей.
 
-{% highlight R %}
+```R
 #  Комментарии начинаются со знака слеша
 
 #  Создадим нескольких переменных
@@ -54,25 +54,25 @@ header-img: "img/post-bg-02.jpg"
 > rm(perimeter)
 > ls()
 [1] "height" "width" "square"
-{% endhighlight %}
+```
 
-Для полноценных программ исходный код сохраняется в `R-скрипты`, файлы с расширением `.R`. 
+Для полноценных программ исходный код сохраняется в `R-скрипты`, файлы с расширением `.R`.
 
-{% highlight R %}
+```R
 # Функция "cat" используется для вывода в консоль или файл
 
 cat("Compute the square of pizza:\n")
-pizza_radius <- 3 
+pizza_radius <- 3
 pizza_square <- pi * pizza_radius ^ 2
 cat(pizza_square)
-{% endhighlight %}
+```
 
 Исполняется такой скрипт командой `Rscript square.R`. Или можно просто поставить IDE, например [RStudio](https://www.rstudio.com/), open-source версия которой доступна для всех платформ.
 
-Получить дополнительную информацию по любой функции `R` можно используя встроенную документацию. Для этого перед именем функции нужно допечатать `?`. 
+Получить дополнительную информацию по любой функции `R` можно используя встроенную документацию. Для этого перед именем функции нужно допечатать `?`.
 В документации хранится описание функции, полный список аргументов и примеры.
 
-{% highlight R %}
+```R
 > ?sum
 Sum of Vector Elements
 
@@ -83,14 +83,14 @@ Usage
 sum(..., na.rm = FALSE)
 Arguments
 
-... 
+...
 numeric or complex or logical vectors.
 na.rm   
 logical. Should missing values (including NaN) be removed?
 Details
 
 This is a generic function: methods can be defined for it directly or via the Summary group generic. For this to work properly, the arguments ... should be unnamed, and dispatch is on the first argument.
-{% endhighlight %}
+```
 
 Или поискать название функции в интернете.
 
@@ -98,20 +98,20 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 Самым простым является логический тип данных `logical`. К нему относятся значения `TRUE` и `FALSE`, можно просто `T` и `F`. Еще `logical` соответствует значение `NA`, но сейчас это неважно.
 
-Чтобы определить к какому типу относится переменная есть функция  `class()`, которая принимает переменную и возвращает ее тип. 
+Чтобы определить к какому типу относится переменная есть функция  `class()`, которая принимает переменную и возвращает ее тип.
 
-{% highlight R %}
+```R
 > variable <- FALSE
 > class(variable)
 [1] "logical"
 
 > class(TRUE)
 [1] "logical"
-{% endhighlight %}
+```
 
 Для `logical` переменных определены основные логические операции.
 
-{% highlight R %}
+```R
 > TRUE && (FALSE || TRUE)
 [1] TRUE
 
@@ -120,13 +120,13 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 > !TRUE
 [1] FALSE
-{% endhighlight %}
+```
 
 ## Numeric
 
 Числовой тип данных представлен `numeric` и поддерживает основные арифметические операции.
 
-{% highlight R %}
+```R
 # Ничего интересного
 
 > 1984
@@ -152,11 +152,11 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 > 9 %/% 2
 [1] 4
-{% endhighlight %}
+```
 
 Частным случаем `numeric` является целочисленный тип `integer`. Для указания что число является `integer` к нему дописывается `L`.
 
-{% highlight R %}
+```R
 # Это numeric
 
 > class(13)
@@ -166,7 +166,7 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 > class(13L)
 [1] "integer"
-{% endhighlight %}
+```
 
 Все `integer` являются `numeric`, но не все `numeric` являются `integer`.
 
@@ -174,7 +174,7 @@ This is a generic function: methods can be defined for it directly or via the Su
 
 Для хранения строк есть `character`, тут все просто.
 
-{% highlight R %}
+```R
 > "Hello, World!"
 [1] "Hello World!"
 
@@ -200,13 +200,13 @@ character
 
 > sub("problem", "dream!", "I have a problem")
 [1] "I have a dream!"
-{% endhighlight %}
+```
 
 ##Complex
 
 Тип данных для операций с комплексными числами:
 
-{% highlight R %}
+```R
 # Создание комплексного числа
 
 > z <- 2 + 1i
@@ -237,13 +237,13 @@ character
 
 > Conj(z)
 [1] 2-1i
-{% endhighlight %}
+```
 
 ## Определяем и конвертируем типы
 
 Чтобы проверить, принадлежит ли переменная к какому-либо типу можно использовать функции вида `is.*`:
 
-{% highlight R %}
+```R
 # Возвращаясь к numeric и integer
 
 > is.numeric(5)
@@ -265,11 +265,11 @@ character
 
 > is.logical(FALSE)
 [1] TRUE
-{% endhighlight %}
+```
 
 Для конвертации типов используются функции вида `as.*`:
 
-{% highlight R %}
+```R
 # logical в numeric
 
 > as.numeric(TRUE)
@@ -298,15 +298,15 @@ character
 > as.numeric("This is not a number!")
 [1] NA
 Warning message:
-NAs introduced by coercion 
-{% endhighlight %}
+NAs introduced by coercion
+```
 
 # Векторы
 
 Вектор в `R` это набор элементов одного типа.
 Создаются векторы функцией `c()`, сокращение от *combine*.
 
-{% highlight R %}
+```R
 # Вектор чисел
 
 > remain <- c(10, 11, 13, 8)
@@ -331,11 +331,11 @@ NAs introduced by coercion
 
 > sum(remain)
 [1] 42
-{% endhighlight %}
+```
 
 Каждому элементу вектора может быть присвоено имя. Сделать это можно несколькими способами:
 
-{% highlight R %}
+```R
 # С помощью функции names()
 
 > names(remain) <- suits
@@ -345,16 +345,16 @@ spades hearts diamonds clubs
 
 # Во время создания объекта
 
-remain <- c("spades" = 10, "hearts" = 11, "diamonds" = 13, "clubs" = 8) 
+remain <- c("spades" = 10, "hearts" = 11, "diamonds" = 13, "clubs" = 8)
 
 # Имена можно не заключать в кавычки
 
 remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
-{% endhighlight %}
+```
 
 На самом деле, все базовые типы `R` являются векторами из 1 элемента.
 
-{% highlight R %}
+```R
 > day_number <- 1
 > day_title <- "Monday"
 
@@ -369,11 +369,11 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 
 > length(day_title)
 [1] 1
-{% endhighlight %}
+```
 
 При попытке создать вектор, содержащий элементы нескольких типов, все элементы будут приведены к наиболее общему типу.
 
-{% highlight R %}
+```R
 # Все numeric будут конвертированы в character
 
 > marks <- c(4, 5, "A", "F")
@@ -382,13 +382,13 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 
 >class(manks)
 [1] "character"
-{% endhighlight %}
+```
 
 ##Вычисления с векторами
 
 Операции над векторами выполняются *поэлементно*:
 
-{% highlight R %}
+```R
 > earnings <- c(10, 20, 30)
 > earnings * 3
 [1] 30 60 90
@@ -412,15 +412,15 @@ remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
 
 > earnings > 15
 [1] FALSE TRUE TRUE
-{% endhighlight %}
+```
 
 ##Элементы вектора, подмножества векторов
 
 Обращение к элементам вектора происходит по индексу или имени, заключенному в квадратные скобки `[]`. Об плохом: ***индексация в R начинается с 1.***
 
-{% highlight R %}
+```R
 > remain <- c(spades = 10, hearts = 11, diamonds = 13, clubs = 8)
-> 
+>
 # По индексу
 
 > remain[1]
@@ -432,11 +432,11 @@ spades
 > remain["hearts"]
 hearts
     11
-{% endhighlight %}
+```
 
 Можно получить несколько элементов вектора, используя числовой вектор или вектор строк.
 
-{% highlight R %}
+```R
 
 # По индесам
 
@@ -449,11 +449,11 @@ spades clubs
 > remain[c("diamonds", "hearts")]
 diamonds hearts
       13     11     
-{% endhighlight %}
+```
 
 Если поставить перед индексом элемента знак минус `-`, этот элемент будет исключен из вектора. Удалять элементы по именам нельзя, только по индексам.
 
-{% highlight R %}
+```R
 
 # Новый вектор, содержащий все элементы remain кроме третьего
 
@@ -467,11 +467,11 @@ spades hearts clubs
 > remain[-c(1, 3)]
 hearts clubs
     11     8
-{% endhighlight %}
+```
 
 Подмножество элементов можно получить передав вектор `logic` значений. Будут выбраны элементы индексам которых соответствует значение `TRUE`.
 
-{% highlight R %}
+```R
 
 # Выбираем второй и четвертый элементы
 
@@ -489,15 +489,15 @@ hearts clubs
 
 >remain[remain %% 2 != 0]
 hearts diamonds
-    11       13 
-{% endhighlight %}
+    11       13
+```
 
 #Матрицы
 
 Матрица расширяет понятие вектора. Это тот же самый вектор, который может содержать элементы только одного типа, но теперь двумерный.
 Создается матрица функцией `matrix()`, с указанием количества строк или столбцов.
 
-{% highlight R %}
+```R
 
 # Матрица содержащая элементы от 1 до 6 в две строки
 
@@ -528,11 +528,11 @@ hearts diamonds
 [1,]    1    2    3    1
 [2,]    2    3    1    2
 [3,]    3    1    2    3
-{% endhighlight %}
+```
 
 Второй способ создания матрицы состоит в комбинировании векторов по строкам или по столбцам, функциями `rbind` и `cbind` соответственно.
 
-{% highlight R %}
+```R
 > rbind(1:3, 7:9)
      [,1] [,2] [,3]
 [1,]    1    2    3
@@ -543,11 +543,11 @@ hearts diamonds
 [1,]    4    1
 [2,]    5    2
 [3,]    6    3
-{% endhighlight %}
+```
 
 Используя `rbind` и `cbind` можно добавить строку или столбец к уже существующей матрице.
 
-{% highlight R %}
+```R
 > m <- matrix(1:6, byrow = TRUE, nrow = 2)
 > m
      [,1] [,2] [,3]
@@ -564,17 +564,17 @@ hearts diamonds
      [,1] [,2] [,3] [,4]
 [1,]    1    2    3   10
 [2,]    4    5    6   11
-{% endhighlight %}
+```
 
 Для присвоения имен строкам и столбцам матрицы есть функции `rownames` и `colnames`. Строки и столбцы могут быть проименованы и в момент создания матрицы параметром `dimnames`.
 
-{% highlight R %}
+```R
 > m <- matrix(1:9, nrow = 3, ncol = 3, byrow = TRUE)
-> 
+>
 # Называем стоки
 
 > rownames(m) <- c("row1", "row2", "row3")
-> 
+>
 # Называем столбцы
 
 > colnames(m) <- c("col1", "col2", "col3")
@@ -589,7 +589,7 @@ row3    7    8    9
 > m <- matrix(1:9, byrow = TRUE, nrow = 3, ncol = 3,
                 dimnames = list(c("row1", "row2", "row3"),
                                 c("col1", "col2", "col3")))
-{% endhighlight %}
+```
 
 Как и векторы, матрицы хранят элементы только одного типа. При попытке сохранить в одной матрице элементы нескольких типов, или соединить матрицы разных типов используя `rbind` и `cbind` все элементы будут приведены к наиболее общему типу.
 
@@ -597,37 +597,37 @@ row3    7    8    9
 
 Для выбора элементов матрицы используются те же техники что и для векторов, с поправкой на двумерность матрицы.
 
-{% highlight R %}
+```R
 # Выбираем элемент из первой строки, третьего столбца
 
 > m[1, 3]
 [1] 3
-{% endhighlight %}
+```
 
 Если не указан один из индексов, будет получена целая строка или столбец.
 
-{% highlight R %}
+```R
 # Выбираем вторую строку
 
 > m[2, ]
-col1 col2 col3 
-   4    5    6 
+col1 col2 col3
+   4    5    6
 
 # Выбираем третий столбец
 
 > m[, 3]
-row1 row2 row3 
-   3    6    9 
-{% endhighlight %}
+row1 row2 row3
+   3    6    9
+```
 
 Можно выбирать сразу несколько элементов. Принципы те же, что и с векторами.
 
-{% highlight R %}
+```R
 # Элементы на пересечении второй строки, первого и третьего столбца
 
 > m[2, c(1, 3)]
-col1 col3 
-   4    6 
+col1 col3
+   4    6
 
 # Подматрица, состоящая из элементов на пересечении 1, 3 строк и 1, 3 столбцов
 
@@ -635,27 +635,27 @@ col1 col3
      col1 col3
 row1    1    3
 row3    7    9
-{% endhighlight %}
+```
 
 Элементы можно выбрать используя имена строк и столбцов.
 
-{% highlight R %}
+```R
 > m[c("row1", "row3"), "col1"]
-row1 row3 
-   1    7 
+row1 row3
+   1    7
 
 # Индексы и имена можно использовать вместе
 
 > m[2, c("col2", "col3")]
-col2 col3 
-   5    6 
-{% endhighlight %}
+col2 col3
+   5    6
+```
 
 ## Использование матриц
 
 Матрицы поддерживают все стандартные арифметические операции. Выполняются операции над матрицами поэлементно, включая умножение и деление.
 
-{% highlight R %}
+```R
 # Переменная будет добавлена к каждому элементу
 
 > m + 3
@@ -675,14 +675,14 @@ row3 1.945910 2.0794415 2.197225
 # "rowSums" возвращает сумму элементов каждой строки
 
 > rowSums(m)
-row1 row2 row3 
-   6   15   24 
+row1 row2 row3
+   6   15   24
 
 # "colSums" возвращает сумму элементов каждого столбца
 
 > colSums(m)
-col1 col2 col3 
-  12   15   18 
+col1 col2 col3
+  12   15   18
 
 # Транспонирование матриц осуществляется функцией "t()"
 
@@ -699,7 +699,6 @@ col3    3    6    9
 [1,]   39   49   59
 [2,]   54   68   82
 [3,]   69   87  105
-{% endhighlight %}
+```
 
 Получилось достаточно объемно, поэтому о списках, datafram-ах, работе с файлами и графикой я напишу в следующих частях.
-
