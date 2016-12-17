@@ -1,12 +1,10 @@
 ---
 layout:     post
-title:      "Собрание материалов по нейронным сетям"
+title:      "Подборка материалов по нейронным сетям"
 date:       2016-12-16 00:00:00 +0200
 author:     "Vasiliy Zemlyanov"
 header-img: "img/post-bg-09.jpg"
 ---
-
-# Материалы для изучения нейронных сетей
 
 # Книги
 
@@ -60,7 +58,7 @@ header-img: "img/post-bg-09.jpg"
 
 Легендарный курс по компьютерному зрению, в котором досконально разобран bleeding edge современных нейронных сетей.
 Автор курса, Andrej Karpathy, гуру сверточных нейронных сетей.
-И у него офигенный [блог](http://karpathy.github.io) и [твиттор](https://twitter.com/karpathy?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)
+Еще у него офигенные [блог](http://karpathy.github.io) и [твиттор](https://twitter.com/karpathy?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor)
 
 <hr />
 
@@ -102,7 +100,7 @@ Graduate курс по нейронным сетям.
 
 <hr />
 
-### Курс на степике
+### Курс на stepik
 
 <https://stepik.org/course/Нейронные-сети-401>
 
@@ -115,11 +113,11 @@ Graduate курс по нейронным сетям.
 
 <https://www.coursera.org/learn/neural-networks>
 
-Geoffrey Hinton - человек стоящий у истоков современных нейронных сетей. Курс хороший, подробный, но на мой взгляд очень скучный.
+Geoffrey Hinton — человек стоящий у истоков современных нейронных сетей. Курс хороший, подробный, но на мой взгляд очень скучный.
 
 <hr />
 
-### *Курс Udacity и Google по TensorFlow*
+### Курс Udacity и Google по TensorFlow
 
 <https://www.udacity.com/course/deep-learning--ud730>
 
@@ -129,13 +127,13 @@ Geoffrey Hinton - человек стоящий у истоков совреме
 
 # Разное
 
-### *Сборник научных статей по нейронным сетям*
+### Сборник научных статей по нейронным сетям
 
 <https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap>
 
 <hr />
 
-### *Репозитории для желающих почитать исходники:*
+### Репозитории для желающих почитать исходники:
 
 - <https://github.com/tensorflow/tensorflow>
 - <https://github.com/Theano/Theano>
