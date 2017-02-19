@@ -1,13 +1,12 @@
 # Site settings
-title: Re9ulus Blog
+title: Rmalkevy Blog
 header-img: img/home-bg.jpg
-email: re9ulusV@gmail.com
+email: henprokuror@gmail.com
 description: "IT, programming, data science"
 baseurl: ""
 # url: "http://yourdomain.com"
-twitter_username: re9ulusV
-github_username:  re9ulus
-# facebook_username:  none
+github_username:  rmalkevy
+facebook_username:  https://www.facebook.com/henprokuror
 
 # Build settings
 markdown: kramdown
